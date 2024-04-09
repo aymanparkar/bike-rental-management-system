@@ -5,7 +5,8 @@
         <template v-for="column in columns" :key="column.key">
           <td>
             <div
-              :class="`text-[12px] font-[600] mr-2 cursor-pointer w-[${column?.width || '100px'}]`"
+              :class="`text-[12px] font-[600] mr-2 cursor-pointer`"
+              :style="`width: ${column?.width || '100px'}`"
             >
               {{ column.title?.toUpperCase() }}
             </div>

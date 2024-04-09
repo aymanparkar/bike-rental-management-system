@@ -33,9 +33,9 @@ const { loading, bookings, fetchBookings } = useBookings()
 const authStore = useAuthStore()
 
 const headers = ref([
-  { key: 'start_date', title: 'Start Date & Time', width: '150px' },
-  { key: 'end_date', title: 'End Date & Time', width: '150px' },
-  { key: 'brand_name', title: 'Brand', width: '150px' },
+  { key: 'start_date', title: 'Start Date & Time', width: '130px' },
+  { key: 'end_date', title: 'End Date & Time', width: '130px' },
+  { key: 'brand_name', title: 'Brand', width: '100px' },
   { key: 'bike_model', title: 'Model', width: '100px' },
   { key: 'bike_name', title: 'Bike' },
   { key: 'bike_number', title: 'Reg. Number' },
