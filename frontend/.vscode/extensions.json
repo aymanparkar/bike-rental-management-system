@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "Vue.volar",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "csstools.postcss",
+    "bradlc.vscode-tailwindcss",
+    "mikestead.dotenv",
+    "editorconfig.editorconfig",
+    "apollographql.vscode-apollo",
+    "lokalise.i18n-ally",
+    "richie5um2.vscode-sort-json",
+    "ms-playwright.playwright",
+    "usernamehw.errorlens"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "template": {
+    "scope": "vue",
+    "prefix": "template",
+    "body": ["<template>", "\t$1", "</template>"]
+  },
+  "named template": {
+    "scope": "vue",
+    "prefix": "template #name",
+    "body": ["<template #${1:name}>", "$2", "</template>"],
+    "description": "named slot"
+  },
+  "template v-if": {
+    "prefix": "template v-if",
+    "body": ["<template v-if=\"$1\">", "\t$2", "</template>"],
+    "description": "template element"
+  },
+  "template v-else": {
+    "prefix": "template v-else",
+    "body": ["<template v-else=\"$1\">", "\t$2", "</template>"],
+    "description": "template element"
+  },
+  "slot": {
+    "scope": "vue",
+    "prefix": "slot",
+    "body": ["<slot>", "\t$1", "</slot>"]
+  },
+  "named slot": {
+    "scope": "vue",
+    "prefix": "named slot",
+    "body": ["<slot name=\"$1\">", "\t$0", "</slot>"]
+  },
+  "script typescript setup": {
+    "scope": "vue",
+    "prefix": "script setup",
+    "body": ["<script lang=\"ts\" setup>", "$1", "</script>", ""]
+  },
+  "style pcss scoped": {
+    "scope": "vue",
+    "prefix": "style lang='pcss' scoped",
+    "body": ["<style lang=\"pcss\" scoped>", "$1", "</style>"]
+  },
+  "v-for": {
+    "prefix": "v-for",
+    "body": [
+      "<${1:div} v-for=\"${2:item} in ${2:item}s\" :key=\"${2:item}.id\">",
+      "\t{{ ${2:item} }}",
+      "</${1:div}>"
+    ],
+    "description": "vfor statement"
+  },
+  "computed getter": {
+    "scope": "javascript,typescript,vue",
+    "prefix": "computed getter",
+    "body": ["computed(() => { $1 })"]
+  },
+  "import": {
+    "scope": "javascript,typescript,vue",
+    "prefix": "import",
+    "body": ["import { $1 } from '$2';"],
+    "description": "Import a module"
+  },
+  "import vue": {
+    "scope": "javascript,typescript,vue",
+    "prefix": "import from vue",
+    "body": ["import { $1 } from 'vue';", "$2"],
+    "description": "Import vue module"
+  },
+  "defineEmits": {
+    "prefix": "defineEmits<{",
+    "body": [
+      "defineEmits<{",
+      "\t(e:'${1:update:modelValue}',${2:reference variable}: '${3:type/component}'): void$4",
+      "}>()"
+    ],
+    "description": "defineEmits template"
+  },
+  "defineProps": {
+    "prefix": "defineProps",
+    "body": [
+      "withDefaults(",
+      "\tdefineProps<{",
+      "\t\t${1:propName}: ${2:propType}$4",
+      "\t}>(),",
+      "\t{",
+      "\t\t${1:propName}: ${3:defaultValue}$5,",
+      "\t}",
+      ")"
+    ],
+    "description": "defineProps"
+  },
+  "interface": {
+    "scope": "typescript",
+    "prefix": "interface name {}",
+    "body": ["interface $1 {", "    $2", "}"],
+    "description": "Export an interface"
+  }
+}
