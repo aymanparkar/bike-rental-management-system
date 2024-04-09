@@ -14,7 +14,10 @@ const app = new Hono();
 app.use(
   "/v1/*",
   cors({
-    origin: ["http://localhost:5173"],
+    origin: [
+      "http://localhost:5173",
+      "https://bike-rental-management-system.vercel.app",
+    ],
   })
 );
 
