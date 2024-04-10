@@ -7,7 +7,7 @@ const signup: MiddlewareHandler = async (c: Context) => {
     const { userName, name, phone, password } = await c.req.json();
 
     const { rows } = await pgPool.query(
-      `insert into public.users (username, name, phone, type, password) values ($1, $2, $3, 'user', $3) 
+      `insert into public.users (username, name, phone, type, password) values ($1, $2, $3, 'user', $4) 
       returning id, username, name, phone, type, password;`,
       [userName, name, phone, btoa(password)]
     );

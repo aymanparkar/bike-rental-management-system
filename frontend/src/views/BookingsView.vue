@@ -12,7 +12,17 @@
       </v-btn>
     </template>
 
-    <DataTable :loading :headers :items="bookings" />
+    <DataTable
+      :loading
+      :headers
+      :items="bookings"
+      @view_bill="
+        (booking) => {
+          console.log(booking)
+          $router.push({ name: BaseRouteNames.BOOKING_CONFIRMATION, params: { id: booking.id } })
+        }
+      "
+    />
 
     <CreateUpdateBookingModal v-model="doShowModal" @refresh="fetchBookings" />
   </MainLayout>
@@ -25,6 +35,7 @@ import MainLayout from '@/layouts/MainLayout.vue'
 import CreateUpdateBookingModal from '@/components/CreateUpdateBookingModal.vue'
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import { BaseRouteNames } from '@/router'
 
 const doShowModal = ref(false)
 
@@ -44,7 +55,8 @@ const headers = ref([
   { key: 'booking_duration', title: 'Booking Duration' },
   { key: 'rent_per_day', title: 'Rent per day' },
   { key: 'booking_amount', title: 'Booking Amount' },
-  { key: 'is_paid', title: 'Payment Status' }
+  { key: 'is_paid', title: 'Payment Status' },
+  { title: 'Actions', key: 'booking_actions' }
 ])
 
 fetchBookings()

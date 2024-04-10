@@ -57,7 +57,7 @@
         </tfoot>
       </table>
 
-      <div class="mt-6 w-full justify-center flex">
+      <div class="mt-6 w-full justify-center flex noPrint">
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           @click="$router.push({ name: BaseRouteNames.BOOKINGS })"
@@ -71,7 +71,7 @@
     <div class="bill-container w-full">
       <h1 class="text-center font-bold text-2xl mb-6">PAYMENT FAILED</h1>
 
-      <div class="mt-6 w-full justify-center flex">
+      <div class="mt-6 w-full justify-center flex noPrint">
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           @click="$router.push({ name: BaseRouteNames.BOOKINGS })"
@@ -110,6 +110,12 @@ const totalAmount = computed(() => {
 </script>
 
 <style scoped>
+@media print {
+  .noPrint {
+    display: none;
+  }
+}
+
 .bill-container {
   max-width: 600px;
   margin: 0 auto;

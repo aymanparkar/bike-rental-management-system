@@ -37,6 +37,12 @@
         />
       </div>
     </template>
+
+    <template v-slot:[`item.booking_actions`]="{ item }">
+      <div class="flex gap-2">
+        <v-btn color="green" size="small" @click="$emit('view_bill', item)"> View Invoice </v-btn>
+      </div>
+    </template>
   </v-data-table>
 </template>
 
@@ -52,5 +58,5 @@ withDefaults(
   }
 )
 
-defineEmits(['edit', 'delete'])
+defineEmits(['edit', 'delete', 'view_bill'])
 </script>
