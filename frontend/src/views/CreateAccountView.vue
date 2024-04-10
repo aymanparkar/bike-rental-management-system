@@ -27,6 +27,12 @@
             type="text"
           />
           <InputComponent
+            v-model="phone.value.value"
+            :errors="phone.errors.value"
+            label="Mobile Number"
+            type="text"
+          />
+          <InputComponent
             v-model="password.value.value"
             :errors="password.errors.value"
             label="Password"
@@ -81,6 +87,11 @@ const { handleSubmit } = useForm({
 
       return 'Name is required'
     },
+    phone(value: string) {
+      if (value?.length > 0) return true
+
+      return 'Mobile Number is required'
+    },
     password(value: string) {
       if (value?.length > 0) return true
 
@@ -93,6 +104,7 @@ const isLoggingIn = ref(false)
 
 const userName = useField('userName')
 const name = useField('name')
+const phone = useField('phone')
 const password = useField('password')
 
 const { axiosInstance } = useAxios()

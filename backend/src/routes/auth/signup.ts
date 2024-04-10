@@ -4,12 +4,12 @@ import { HTTPException } from "hono/http-exception";
 
 const signup: MiddlewareHandler = async (c: Context) => {
   try {
-    const { userName, name, password } = await c.req.json();
+    const { userName, name, phone, password } = await c.req.json();
 
     const { rows } = await pgPool.query(
-      `insert into public.users (username, name, type, password) values ($1, $2, 'user', $3) 
-      returning id, username, name, type, password;`,
-      [userName, name, btoa(password)]
+      `insert into public.users (username, name, phone, type, password) values ($1, $2, $3, 'user', $3) 
+      returning id, username, name, phone, type, password;`,
+      [userName, name, phone, btoa(password)]
     );
 
     const user = rows[0];
@@ -17,6 +17,7 @@ const signup: MiddlewareHandler = async (c: Context) => {
     return c.json({
       id: user.id,
       name: user.name,
+      phone: user.phone,
       userName: user.username,
       type: user.type,
     });
