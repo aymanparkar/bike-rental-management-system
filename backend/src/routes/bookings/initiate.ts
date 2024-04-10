@@ -1,5 +1,4 @@
 import { Context, MiddlewareHandler } from "hono";
-import { pgPool } from "@/libs/pg";
 import { HTTPException } from "hono/http-exception";
 
 const initiate: MiddlewareHandler = async (c: Context) => {
@@ -12,7 +11,7 @@ const initiate: MiddlewareHandler = async (c: Context) => {
         Authorization: `Bearer sk_test_pHoevYT4VQ0iMO7ZNw9FhSK1`,
       },
       body: JSON.stringify({
-        currency: "SAR",
+        currency: "INR",
         customer_initiated: true,
         description: `Payment for Booking`,
         receipt: { email: true, sms: true },

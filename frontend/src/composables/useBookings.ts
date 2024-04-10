@@ -41,7 +41,8 @@ const useBookings = () => {
   const createBooking = async (booking: any) => {
     try {
       loading.value = true
-      await axiosInstance.post('/booking', booking)
+      const initiationResponse = await axiosInstance.post('/initiate', booking)
+      window.location.replace(initiationResponse.data.charge.transaction.url)
       await fetchBookings()
     } finally {
       loading.value = false

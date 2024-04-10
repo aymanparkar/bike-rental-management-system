@@ -108,12 +108,12 @@ const handleCreateBooking = async () => {
       customer_id: useAuthStore().user?.id
     })
 
-    dialog.value = false
-    toast.success('Booking created successfully')
-    bookingFormData.value = {
-      date_range: undefined,
-      bike: null
-    }
+    // dialog.value = false
+    // toast.success('Booking created successfully')
+    // bookingFormData.value = {
+    //   date_range: undefined,
+    //   bike: null
+    // }
     emit('refresh')
   } catch (error) {
     toast.error('Failed to create booking')
