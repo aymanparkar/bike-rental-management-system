@@ -110,7 +110,6 @@
 </template>
 
 <script setup lang="ts">
-import { VNumberInput } from 'vuetify/labs/VNumberInput'
 import useBrands from '@/composables/useBrands'
 import { useForm } from 'vee-validate'
 import useBikes, { type BikeFormModel } from '@/composables/useBikes'

@@ -10,6 +10,8 @@ import router from './router'
 
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
+import { VNumberInput } from 'vuetify/labs/VNumberInput'
+
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -20,7 +22,10 @@ import * as directives from 'vuetify/directives'
 const app = createApp(App)
 
 const vuetify = createVuetify({
-  components,
+  components: {
+    ...components,
+    VNumberInput
+  },
   directives,
   icons: {
     defaultSet: 'mdi',
