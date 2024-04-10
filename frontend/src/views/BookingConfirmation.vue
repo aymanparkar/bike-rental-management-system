@@ -1,5 +1,5 @@
 <template>
-  <div v-if="booking" class="flex items-center w-screen h-screen">
+  <div v-if="booking && !isPaymentFailed" class="flex items-center w-screen h-screen">
     <div class="bill-container w-full">
       <h1 class="text-center font-bold text-2xl mb-6">BOOKING INVOICE</h1>
       <table class="w-full border border-gray-400">
@@ -67,24 +67,40 @@
       </div>
     </div>
   </div>
+  <div v-else class="flex items-center w-screen h-screen">
+    <div class="bill-container w-full">
+      <h1 class="text-center font-bold text-2xl mb-6">PAYMENT FAILED</h1>
+
+      <div class="mt-6 w-full justify-center flex">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click="$router.push({ name: BaseRouteNames.BOOKINGS })"
+        >
+          Go to Bookings
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { BaseRouteNames } from '@/router'
-import dayjs from 'dayjs'
 import { useRoute } from 'vue-router'
 import useBookings from '@/composables/useBookings'
 
 const route = useRoute()
 
 const booking = ref()
+const isPaymentFailed = ref(false)
 
 const { fetchBookings, getBookingById } = useBookings()
 const init = async () => {
   await fetchBookings()
-  console.log(getBookingById(String(route.params.id)))
-  booking.value = getBookingById(String(route.params.id))
+  const fetchedBooking = getBookingById(String(route.params.id))
+  if (!fetchedBooking) {
+    isPaymentFailed.value = true
+  } else booking.value = getBookingById(String(route.params.id))
 }
 init()
 

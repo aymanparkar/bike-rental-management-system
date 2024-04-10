@@ -4,8 +4,8 @@ import { HTTPException } from "hono/http-exception";
 
 const verify: MiddlewareHandler = async (c: Context) => {
   try {
-    const { status, amount, metadata, booking_id } = await c.req.json();
-    const { bike_id, start_date, end_date, customer_id } = metadata;
+    const { status, amount, metadata } = await c.req.json();
+    const { booking_id, bike_id, start_date, end_date, customer_id } = metadata;
 
     if (status !== "CAPTURED")
       throw new HTTPException(400, { message: "Payment not captured" });
