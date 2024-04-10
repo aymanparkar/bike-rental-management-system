@@ -18,7 +18,7 @@ dependencies:
     specifier: ^8.4.0
     version: 8.4.0(vue@3.4.21)
   VNumberInput:
-    specifier: link:vuetify/labs/VNumberInput
+    specifier: vuetify/labs/VNumberInput
     version: link:vuetify/labs/VNumberInput
   axios:
     specifier: ^1.6.7
