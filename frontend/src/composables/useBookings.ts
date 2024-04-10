@@ -6,14 +6,12 @@ import { useAuthStore } from '@/stores/auth'
 
 const useBookings = () => {
   const { axiosInstance } = useAxios()
-  // const authStore = useAuthStore()
+  const authStore = useAuthStore()
   const loading = ref(false)
   const bookings = ref([])
 
   const fetchBookings = async () => {
     try {
-      const authStore = useAuthStore()
-
       loading.value = true
       const { data } = await axiosInstance.get(
         authStore.user?.type === 'admin' ? '/bookings' : `/user-bookings/${authStore.user?.id}`
@@ -41,7 +39,10 @@ const useBookings = () => {
   const createBooking = async (booking: any) => {
     try {
       loading.value = true
-      const initiationResponse = await axiosInstance.post('/initiate', booking)
+      const initiationResponse = await axiosInstance.post('/initiate', {
+        ...booking,
+        user: authStore.user
+      })
       window.location.replace(initiationResponse.data.charge.transaction.url)
       await fetchBookings()
     } finally {

@@ -25,6 +25,7 @@ const login: MiddlewareHandler = async (c: Context) => {
       id: user.id,
       name: user.name,
       userName: user.username,
+      phone: user.phone,
       type: user.type,
     });
   } catch (e) {
