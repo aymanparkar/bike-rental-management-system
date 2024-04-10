@@ -8,8 +8,8 @@ export type BikeFormModel = {
   model: string | undefined
   name: string | undefined
   seater: number
-  engine: string | undefined
-  og_engine?: string | undefined
+  engine: number | undefined
+  og_engine?: number | undefined
   fuel_type: string | undefined
   mileage: number
   has_side_mirrors: boolean

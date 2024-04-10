@@ -17,28 +17,23 @@
                 <v-text-field variant="outlined" v-model="bikeFormData.model" label="Model" />
                 <v-text-field variant="outlined" v-model="bikeFormData.name" label="Name" />
 
-                <v-number-input
+                <v-text-field
                   v-model="bikeFormData.seater"
-                  :reverse="false"
-                  control-variant="split"
                   variant="outlined"
                   label="Seater"
-                  :min="1"
-                  :max="2"
-                  :hideInput="false"
-                  :inset="false"
+                  type="number"
+                  @update:model-value="bikeFormData.seater = Number($event)"
                 />
 
-                <v-number-input
+                <v-text-field
                   v-model="bikeFormData.engine"
-                  :reverse="false"
-                  control-variant="split"
                   variant="outlined"
                   label="Engine CC"
-                  :min="1"
-                  :hideInput="false"
-                  :inset="false"
-                />
+                  type="number"
+                  @update:model-value="bikeFormData.engine = Number($event)"
+                >
+                  <template #append>cc</template>
+                </v-text-field>
               </v-col>
 
               <v-col cols="6">
@@ -54,16 +49,15 @@
                   variant="outlined"
                 />
 
-                <v-number-input
+                <v-text-field
                   v-model="bikeFormData.mileage"
                   variant="outlined"
                   label="Mileage"
-                  :min="1"
-                  :hideInput="false"
-                  :inset="false"
+                  type="number"
+                  @update:model-value="bikeFormData.mileage = Number($event)"
                 >
                   <template #append>kmpl</template>
-                </v-number-input>
+                </v-text-field>
 
                 <div class="flex items-center justify-between h-[56px] mb-[22px]">
                   <div>Has Side Mirrors</div>
@@ -77,21 +71,20 @@
                 </div>
 
                 <v-text-field
-                  variant="outlined"
                   v-model="bikeFormData.bike_number"
+                  variant="outlined"
                   label="Reg. Number"
                 />
-                <!-- <v-text-field variant="outlined" v-model="bikeFormData.name" label="Rent per day" /> -->
-                <v-number-input
+
+                <v-text-field
                   v-model="bikeFormData.rent_per_day"
                   variant="outlined"
                   label="Rent per day"
-                  :min="1"
-                  :hideInput="false"
-                  :inset="false"
+                  type="number"
+                  @update:model-value="bikeFormData.rent_per_day = Number($event)"
                 >
                   <template #append>₹</template>
-                </v-number-input>
+                </v-text-field>
               </v-col>
             </v-row>
           </form>
@@ -114,6 +107,7 @@ import useBrands from '@/composables/useBrands'
 import { useForm } from 'vee-validate'
 import useBikes, { type BikeFormModel } from '@/composables/useBikes'
 import { toast } from 'vue-sonner'
+import { VNumberInput } from 'vuetify/labs/VNumberInput'
 
 const dialog = defineModel<boolean>()
 
@@ -125,7 +119,7 @@ const emptyFormData: BikeFormModel = {
   model: undefined,
   name: undefined,
   seater: 0,
-  engine: undefined,
+  engine: 0,
   fuel_type: undefined,
   mileage: 0,
   has_side_mirrors: true,
@@ -139,7 +133,7 @@ const bikeFormData = defineModel<BikeFormModel>('formData', {
     model: undefined,
     name: undefined,
     seater: 0,
-    engine: undefined,
+    engine: 0,
     fuel_type: undefined,
     mileage: 0,
     has_side_mirrors: true,

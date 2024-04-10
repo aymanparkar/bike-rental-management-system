@@ -59,7 +59,7 @@ const bikeFormData = ref<BikeFormModel>({
   model: '',
   name: '',
   seater: 0,
-  engine: '',
+  engine: 0,
   fuel_type: '',
   mileage: 0,
   has_side_mirrors: false,
@@ -79,7 +79,7 @@ const handleEdit = (bike: BikeFormModel) => {
     engine: bike.og_engine,
     rent_per_day: Number(bike.og_rent_per_day)
   }
-  bikeFormData.value = payload
+  bikeFormData.value = payload as BikeFormModel
   doShowModal.value = true
 }
 const handleDelete = (bike: BikeFormModel) => {
@@ -114,7 +114,7 @@ watch(doShowModal, (v) => {
       model: undefined,
       name: undefined,
       seater: 0,
-      engine: undefined,
+      engine: 0,
       fuel_type: undefined,
       mileage: 0,
       has_side_mirrors: true,
