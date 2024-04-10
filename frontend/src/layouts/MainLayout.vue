@@ -108,6 +108,11 @@ const sideNavItems = ref([
           route: BaseRouteNames.CUSTOMERS
         }
       ]
-    : [])
+    : []),
+  {
+    title: 'Profile',
+    icon: 'mdi-account-settings',
+    route: BaseRouteNames.PROFILE
+  }
 ])
 </script>

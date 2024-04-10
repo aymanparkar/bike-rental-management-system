@@ -1,5 +1,5 @@
 <template>
-  <div v-if="booking && !isPaymentFailed" class="flex items-center w-screen h-screen">
+  <div v-if="!isPaymentFailed" class="flex items-center w-screen h-screen">
     <div class="bill-container w-full">
       <h1 class="text-center font-bold text-2xl mb-6">BOOKING INVOICE</h1>
       <table class="w-full border border-gray-400">

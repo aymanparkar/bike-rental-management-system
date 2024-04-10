@@ -10,7 +10,8 @@ export enum BaseRouteNames {
   BOOKING_CONFIRMATION = 'booking-confirmation',
   BRANDS = 'brands',
   BIKES = 'bikes',
-  CUSTOMERS = 'customers'
+  CUSTOMERS = 'customers',
+  PROFILE = 'profile'
 }
 
 const router = createRouter({
@@ -55,6 +56,11 @@ const router = createRouter({
       path: '/bikes',
       name: BaseRouteNames.BIKES,
       component: () => import('@/views/BikesView.vue')
+    },
+    {
+      path: '/profile',
+      name: BaseRouteNames.PROFILE,
+      component: () => import('@/views/UserProfile.vue')
     },
     {
       path: '/customers',

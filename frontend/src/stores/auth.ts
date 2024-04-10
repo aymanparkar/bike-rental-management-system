@@ -4,6 +4,7 @@ import { defineStore } from 'pinia'
 export type User = {
   id: string
   name: string
+  phone: string
   userName: string
   type: 'admin' | 'user'
 }
