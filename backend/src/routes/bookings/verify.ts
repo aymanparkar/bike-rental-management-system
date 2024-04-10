@@ -4,7 +4,7 @@ import { HTTPException } from "hono/http-exception";
 
 const verify: MiddlewareHandler = async (c: Context) => {
   try {
-    const { status, amount, metadata } = await c.req.json();
+    const { status, amount, metadata, booking_id } = await c.req.json();
     const { bike_id, start_date, end_date, customer_id } = metadata;
 
     if (status !== "CAPTURED")
@@ -12,10 +12,10 @@ const verify: MiddlewareHandler = async (c: Context) => {
 
     await pgPool.query(
       `
-      insert into bookings (bike_id, start_date, end_date, booking_amount, customer_id)
-      values ($1, $2, $3, $4, $5)
+      insert into bookings (id, bike_id, start_date, end_date, booking_amount, customer_id)
+      values ($1, $2, $3, $4, $5, $6)
     `,
-      [bike_id, start_date, end_date, amount, customer_id]
+      [booking_id, bike_id, start_date, end_date, amount, customer_id]
     );
     return c.json({
       message: "Booking created successfully",

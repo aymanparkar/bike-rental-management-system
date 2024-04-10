@@ -28,12 +28,19 @@ const useBookings = () => {
           rent_per_day: `₹${Number(booking.rent_per_day).toFixed(2)}`,
           booking_duration: `${end_date.diff(start_date, 'days')} DAY(S)`,
           booking_amount: `₹${Number(end_date.diff(start_date, 'days') * booking.rent_per_day).toFixed(2)}`,
+          og_booking_amount: Number(
+            end_date.diff(start_date, 'days') * booking.rent_per_day
+          ).toFixed(2),
           is_paid: booking.is_paid ? 'PAID' : 'UNPAID'
         }
       })
     } finally {
       loading.value = false
     }
+  }
+
+  const getBookingById = (id: string) => {
+    return bookings.value.find((booking: any) => booking.id === id)
   }
 
   const createBooking = async (booking: any) => {
@@ -50,7 +57,7 @@ const useBookings = () => {
     }
   }
 
-  return { loading, bookings, fetchBookings, createBooking }
+  return { loading, bookings, fetchBookings, getBookingById, createBooking }
 }
 
 export default useBookings

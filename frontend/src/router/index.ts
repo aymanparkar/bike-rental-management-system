@@ -7,6 +7,7 @@ export enum BaseRouteNames {
   SIGN_UP = 'sign-up',
   HOME = 'home',
   BOOKINGS = 'bookings',
+  BOOKING_CONFIRMATION = 'booking-confirmation',
   BRANDS = 'brands',
   BIKES = 'bikes',
   CUSTOMERS = 'customers'
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/bookings',
       name: BaseRouteNames.BOOKINGS,
       component: () => import('@/views/BookingsView.vue')
+    },
+    {
+      path: '/booking-confirmation/:id',
+      name: BaseRouteNames.BOOKING_CONFIRMATION,
+      component: () => import('@/views/BookingConfirmation.vue')
     },
     {
       path: '/brands',

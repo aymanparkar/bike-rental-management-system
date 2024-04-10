@@ -1,10 +1,12 @@
 import { Context, MiddlewareHandler } from "hono";
 import { HTTPException } from "hono/http-exception";
-
+import crypto from "crypto";
 const initiate: MiddlewareHandler = async (c: Context) => {
   try {
     const { bike_id, start_date, end_date, booking_amount, customer_id, user } =
       await c.req.json();
+
+    const booking_id = crypto.randomUUID();
 
     const options = {
       method: "POST",
@@ -24,9 +26,10 @@ const initiate: MiddlewareHandler = async (c: Context) => {
           url: "https://bike-rental-management-system.onrender.com/v1/verify-booking",
         },
         redirect: {
-          url: `https://bike-rental-management-system.vercel.app/bookings`,
+          url: `https://bike-rental-management-system.vercel.app/booking-confirmation/${booking_id}`,
         },
         metadata: {
+          booking_id,
           bike_id,
           start_date,
           end_date,

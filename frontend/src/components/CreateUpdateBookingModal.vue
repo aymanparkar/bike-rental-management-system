@@ -42,8 +42,8 @@
           <v-btn
             size="small"
             color="primary"
-            text="Save"
-            variant="tonal"
+            text="Checkout"
+            variant="flat"
             @click="handleCreateBooking"
           ></v-btn>
         </v-card-actions>

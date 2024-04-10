@@ -1,6 +1,7 @@
 <template>
   <MainLayout title="Dashboard">
     <LoadingState v-if="loading" />
+
     <dl v-else class="grid grid-cols-1 gap-5 sm:grid-cols-4">
       <div
         v-for="stat in stats"
@@ -19,7 +20,6 @@
 <script setup lang="ts">
 import MainLayout from '@/layouts/MainLayout.vue'
 import LoadingState from '@/components/LoadingState.vue'
-
 import useStatistics from '@/composables/useStatistics'
 
 const { loading, stats, fetchStats } = useStatistics()
