@@ -3,6 +3,9 @@ import { HTTPException } from "hono/http-exception";
 
 const initiate: MiddlewareHandler = async (c: Context) => {
   try {
+    const { bike_id, start_date, end_date, booking_amount, customer_id, user } =
+      await c.req.json();
+
     const options = {
       method: "POST",
       headers: {
@@ -11,7 +14,7 @@ const initiate: MiddlewareHandler = async (c: Context) => {
         Authorization: `Bearer sk_test_pHoevYT4VQ0iMO7ZNw9FhSK1`,
       },
       body: JSON.stringify({
-        currency: "INR",
+        currency: "SAR",
         customer_initiated: true,
         description: `Payment for Booking`,
         receipt: { email: true, sms: true },
@@ -24,17 +27,20 @@ const initiate: MiddlewareHandler = async (c: Context) => {
           url: `https://bike-rental-management-system.vercel.app/bookings`,
         },
         metadata: {
-          id: "1234567890",
+          bike_id,
+          start_date,
+          end_date,
+          customer_id,
         },
-        amount: 1289,
+        amount: booking_amount,
         customer: {
-          first_name: "awef",
           middle_name: "",
-          last_name: "awefea",
-          email: "awefawefewa.@gmail.com",
+          first_name: user.name,
+          last_name: "",
+          // email: "",
           phone: {
             country_code: 91,
-            number: 7507673320,
+            number: user.phone,
           },
         },
       }),
